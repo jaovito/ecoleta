@@ -1,5 +1,5 @@
 {
-  "name": "NLW",
+  "name": "new-ecoleta-nlw",
   "version": "1.0.0",
   "main": "src/server.js",
   "scripts": {
