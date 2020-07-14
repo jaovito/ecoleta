@@ -1,4 +1,4 @@
-require('dotenv')
+require('dotenv').config()
 const express = require("express")
 const server = express() //executando a função apssada para a variavel express
 
@@ -17,7 +17,9 @@ db.once('open', function() {
 
 mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  
+  
 });
 
 
