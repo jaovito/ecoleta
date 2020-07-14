@@ -56,3 +56,31 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 477px) {
+  #page-home main a {
+    margin-bottom: 6vh;
+  }
+
+  #page-home header a span {
+    margin-right: -1px;
+    display: flex;
+    background-image: url("../assets/log-in.svg");
+    width: 26px;
+    height: 20px;
+}
+}
+
+@media (max-width: 463px) {
+  #page-home main a {
+    margin-bottom: 18vh;
+  }
+
+  #page-home header a span {
+    margin-right: -1px;
+    display: flex;
+    background-image: url("../assets/log-in.svg");
+    width: 23px;
+    height: 20px;
+}
+}
