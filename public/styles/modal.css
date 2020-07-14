@@ -101,3 +101,8 @@
   color: white;
   margin-top: 32px;
 }
+
+#modal h2 {
+  color: #d5d5d5;
+  margin-bottom: 15px;
+}

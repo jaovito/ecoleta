@@ -124,10 +124,10 @@ server.get("/search", (req, res) => {
 
 
 
-  Eco.find({city: search}, function(err, rows) {
+Eco.find({city: {$regex: search, $options: 'i'}}, function(err, rows) {
     if(err) {
        console.log(err)
-      return res.send("Erro no cadastro!")
+      return res.send("Erro na pesquisa!")
     }
     console.dir(rows)
 
