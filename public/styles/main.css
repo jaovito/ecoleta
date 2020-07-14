@@ -28,3 +28,32 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 
+footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(255, 68, 156);
+  
+  position: relative;
+  top: -10vh;
+  left: 20vw;
+
+  transition: 400ms;
+
+}
+footer a span {
+  font-family: Ubuntu, sans-serif;
+  color: #245e91;
+  font-size: 20px;
+  margin-left: 5px;
+
+  transition: 400ms;
+}
+
+footer a:hover {
+  opacity: 0.7;
+}
+
+footer a span:hover {
+  text-decoration: underline;
+}
