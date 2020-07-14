@@ -2,8 +2,40 @@ require('dotenv')
 const express = require("express")
 const server = express() //executando a função apssada para a variavel express
 
-//pegar o banco de dados
-const db = require("./database/db")
+
+
+const mongoose = require('mongoose');
+
+const db = mongoose.connection;
+
+db.on('error', console.error);
+db.once('open', function() {
+  console.log('Conectado ao MongoDB.')
+  // Vamos adicionar nossos Esquemas, Modelos e consultas aqui
+
+});
+
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+
+
+const ecology = new mongoose.Schema({
+  image: String,
+  name: String,
+  address: String,
+  address2: String,
+  state: String,
+  city: String,
+  items: String
+});
+
+const Eco = mongoose.model('Eco', ecology);
+
+
+
 
 
 //configurar pasta publica
@@ -46,29 +78,6 @@ server.post("/savepoint", (req, res) => {
   //req.body: o corpo do nosso formulário
   //inserir dados no banco de dados
 
-  const query = `
-    INSERT INTO places (
-      image,
-      name,
-      address,
-      address2,
-      state,
-      city,
-      items
-    ) VALUES (
-      ?,?,?,?,?,?,?);
-      `
-
-  const values = [
-    req.body.image,
-    req.body.name,
-    req.body.address,
-    req.body.address2,
-    req.body.state,
-    req.body.city,
-    req.body.items
-  ]
-
   function afterInsertData(err) {
     if(err) {
       return console.log(err)
@@ -80,7 +89,24 @@ server.post("/savepoint", (req, res) => {
     return res.render("create-point.html", { saved: true})
   }
   
-  db.run(query, values, afterInsertData)
+  const query = new Eco({
+    image: req.body.image,
+    name: req.body.name,
+    address: req.body.address,
+    address2: req.body.address2,
+    state: req.body.state,
+    city: req.body.city,
+    items: req.body.items
+  })
+
+  query.save(function(err, query) {
+    if(err) return console.error(err)
+    console.dir(query)
+    afterInsertData()
+  })
+
+  
+  
 })
 
 
@@ -96,15 +122,15 @@ server.get("/search", (req, res) => {
 
 
 
-  db.all(`SELECT * FROM places WHERE city LIKE '%${search}%'`, function(err, rows) {
+  Eco.find({city: search}, function(err, rows) {
     if(err) {
        console.log(err)
       return res.send("Erro no cadastro!")
     }
+    console.dir(rows)
 
 
-
-    const total = rows.length
+  const total = rows.length
 
 
    //mostrar página html com os dados do banco de dados 
@@ -113,4 +139,4 @@ server.get("/search", (req, res) => {
 })
 
 //ligar o servidor
-server.listen(process.env.PORT || 3000) // porta heroku
+server.listen(process.env.PORT || 3001) // porta heroku
