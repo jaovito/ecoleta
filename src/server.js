@@ -70,10 +70,14 @@ server.get("/", (req, res) => {
 
 server.get("/create-point", (req, res) => {
   //req.query: query strings da nossa url
-  console.log(req.query)
 
 
  return res.render("create-point.html")  
+})
+
+server.get('/upload', (req, res) => {
+
+  return res.render("upload-image.html")
 })
 
 server.post("/savepoint", (req, res) => {
@@ -121,15 +125,14 @@ server.get("/search", (req, res) => {
   return res.render("search-results.html", {total: 0})  
   }
 
-
-
-
 Eco.find({city: {$regex: search, $options: 'i'}}, function(err, rows) {
     if(err) {
        console.log(err)
       return res.send("Erro na pesquisa!")
     }
+    
     console.dir(rows)
+
 
 
   const total = rows.length

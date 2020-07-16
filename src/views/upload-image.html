@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% set pageId = "page-create-point" %}
+
+
+  {% block title %}
+    <title>Armazenar Imagem</title>
+  {% endblock %}
+
+  {% block styles%}
+
+    <link rel="stylesheet" href="/styles/create-point.css">
+    <link rel="stylesheet" href="/styles/modal.css">
+
+  {% endblock styles%}
+
+
+
+  {% block content %}
+  {%include "partials/page-header.html"%}
+
+ <div class="content">
+
+    <header>
+     <h1>Armazene suas Imagens</h1>
+    </header>
+
+    <main>
+        <p class="uploadMessage">Aqui você pode armazenar suas imagens, basta arrastar elas na tela abaixo ou clicar no local onde deve arrastar e selecionar a imagem <span>(máximo de 2mb)</span></p>
+    </main>
+
+    <section>
+        <iframe src="https://uploadfiles-frontend.herokuapp.com/" frameborder=""></iframe>
+    </section>
+
+    <div>
+        <p>Após armazenar sua foto é só clicar no ícone do link e copiar a URL e voltar.</p>
+    </div>
+
+ </div>
+
+ 
+
+  {% endblock content %}
+    
+  {% block modal %}
+    {% if saved %}
+
+      {% include "partials/point-created.html" %}
+  
+    {% endif %}
+  {% endblock %}
+      
+{% block scripts %}
+
+  <script src="/scripts/create-point.js"></script>
+  
+{% endblock %}
