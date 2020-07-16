@@ -1,43 +1,9 @@
 require('dotenv').config()
+require('./database/db')
 const express = require("express")
 const server = express() //executando a função apssada para a variavel express
 
-
-
-const mongoose = require('mongoose');
-
-const db = mongoose.connection;
-
-db.on('error', console.error);
-db.once('open', function() {
-  console.log('Conectado ao MongoDB.')
-  // Vamos adicionar nossos Esquemas, Modelos e consultas aqui
-
-});
-
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  
-  
-});
-
-
-
-const ecology = new mongoose.Schema({
-  image: String,
-  name: String,
-  address: String,
-  address2: String,
-  state: String,
-  city: String,
-  items: String
-});
-
-const Eco = mongoose.model('Eco', ecology);
-
-
-
+const Eco = require('./database/dataSchema')
 
 
 //configurar pasta publica
