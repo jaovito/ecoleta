@@ -19,7 +19,7 @@
   {% block content %}
   {%include "partials/page-header.html"%}
 
-  <form action="/savepoint" method="POST">
+  <form id="formulario" action="/savepoint" method="POST">
 
     <h1>Cadastro do ponto de coleta</h1>
 
@@ -41,7 +41,7 @@
           type="url" 
           name="image" 
           required
-          placeholder="http://">
+          placeholder="http://" value="">
           <a href="/upload" id="ImageLink">Não sabe como fazer um link?</a >
         </div>
 
@@ -130,7 +130,7 @@
 
 
 
-    <button type="submit">Cadastrar ponto de coleta</button>
+    <button id="buttonSubmit" type="submit">Cadastrar ponto de coleta</button>
 
   </form>
 

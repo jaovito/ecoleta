@@ -92,3 +92,13 @@ document
   collectedItems.value = selectedItems
 
   }
+
+  const buttonSubmit = document.getElementById('buttonSubmit')
+
+  buttonSubmit.addEventListener('click', () => {
+    const imagem = document.querySelector('input[name=image]')
+
+    if(imagem.value == '') {
+      imagem.value = "https://upload.wikimedia.org/wikipedia/commons/8/8b/Symbol_recycling_vote.svg"
+    }
+  })
